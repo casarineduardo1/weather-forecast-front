@@ -1,0 +1,39 @@
+<title>Tempo</title>
+
+<body class="container">
+    <h1 class="text-center">Tempo</h1>
+    <div class="form-group">
+        <label>Informe uma cidade</label>
+        <input class="form-control" type="text" placeholder="Digite aqui a cidade que deseja" [(ngModel)]="nomeCidade">
+    </div>
+    <button class="btn btn-primary" (click)=postCity()>Previsão do tempo</button>
+    <br>
+    <br>
+    <div class="container-div">
+        <div class="box-div">
+            <input style="width: 250px;" class="form-control" [(ngModel)]="searchCity" (ngModelChange)="search()"
+                placeholder="Filtre uma cidade" />
+        </div>
+        <div class="box-div">
+            <img class="length-img" src="../../../assets/filter.png">
+        </div>
+    </div>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr class="no-margin">
+                <th style="border-right: 0px; border-bottom: 0px;">Lista de cidades</th>
+                <th style="border-left: 0px; border-bottom: 0px"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let cidade of cidades | searchCity:searchCity; let i = index">
+                <td style="width: 95%;" (click)=forecast(cidade.apiId)>{{i+1}} - {{cidade.name}}</td>
+                <td style="text-align: center;" (click)=remove(cidade.id)>
+                    <img style="width: 20px; height: 20x; text-align: center; margin-right: 2px;" class="card-img"
+                        src="../../../assets/images.jpeg">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
